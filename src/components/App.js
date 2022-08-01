@@ -9,7 +9,6 @@ function App() {
 
   const checkUserState = () => {
     authService.getAuth().onAuthStateChanged((user) => {
-      // console.log(user);
       if (user) {
         if (user.displayName === null) {
           user.displayName = user.email.split("@")[0];
