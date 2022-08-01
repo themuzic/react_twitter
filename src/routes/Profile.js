@@ -1,4 +1,3 @@
-import App from "components/App";
 import { authService, firebaseDB } from "fb";
 import { updateProfile } from "firebase/auth";
 import { collection, query, where, orderBy, getDocs } from "firebase/firestore";
@@ -39,7 +38,7 @@ const Profile = ({ userObj, refreshUser }) => {
 
   useEffect(() => {
     getMyTweets();
-  }, []);
+  });
 
   return (
     <div className="container">

@@ -19,7 +19,7 @@ const Home = ({ userObj }) => {
       setTweets(tweetArr);
       // console.log("worked ", new Date().toLocaleString());
     });
-  }, []);
+  });
 
   return (
     <div className="container">
