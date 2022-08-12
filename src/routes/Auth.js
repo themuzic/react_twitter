@@ -24,13 +24,13 @@ const Auth = () => {
       provider = new authService.GithubAuthProvider();
       provider.addScope("repo");
     }
-
+    console.log(`provider: ${provider}`);
     await authService.signInWithPopup(auth, provider);
   };
 
   return (
     <div className="authContainer">
-      <div style={{ margin: "0 auto", textAlign: "center" }}>
+      <div style={{ textAlign: "center" }}>
         <FontAwesomeIcon
           icon={faTwitter}
           color={"#04AAFF"}

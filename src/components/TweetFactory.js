@@ -8,6 +8,7 @@ import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 const TweetFactory = ({ userObj, collectionRef }) => {
   const [tweet, setTweet] = useState("");
   const [fileUrl, setFileUrl] = useState("");
+
   const onSubmit = async (event) => {
     if (tweet === "") {
       return;
@@ -67,10 +68,10 @@ const TweetFactory = ({ userObj, collectionRef }) => {
 
   return (
     <form onSubmit={onSubmit} className="factoryForm">
-      <div className="factoryInput__container">
+      <div className="factoryInput_container">
         <input
           type="text"
-          placeholder="What's on your mind?"
+          placeholder="What you wanna talk?"
           className="tweetInput"
           maxLength={120}
           value={tweet}
@@ -79,11 +80,11 @@ const TweetFactory = ({ userObj, collectionRef }) => {
         <input
           type="submit"
           value="&rarr;"
-          className="factoryInput__arrow"
+          className="factoryInput_arrow"
           title="Tweet!"
         />
       </div>
-      <label htmlFor="attach-file" className="factoryInput__label">
+      <label htmlFor="attach-file" className="factoryInput_label">
         <span>Add Photo</span>
         <FontAwesomeIcon icon={faPlus} />
       </label>
@@ -97,7 +98,7 @@ const TweetFactory = ({ userObj, collectionRef }) => {
         }}
       />
       {fileUrl && (
-        <div className="factoryForm__attachment">
+        <div className="factoryForm_attachment">
           <img
             src={fileUrl}
             alt=""
@@ -105,7 +106,7 @@ const TweetFactory = ({ userObj, collectionRef }) => {
               backgroundImage: fileUrl,
             }}
           />
-          <div className="factoryForm__clear" onClick={onClearPhoto}>
+          <div className="factoryForm_clear" onClick={onClearPhoto}>
             <span>Remove</span>
             <FontAwesomeIcon icon={faTimes} />
           </div>

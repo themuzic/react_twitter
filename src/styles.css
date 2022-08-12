@@ -11,16 +11,16 @@ input {
 }
 
 body {
-  background-color: black;
+  background-color: white;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu , Cantarell ,  "Open Sans" ,  "Helvetica Neue" , sans-serif;
   font-size: 14px;
-  color: white;
+  color: black;
 }
 
 button {
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: white;
 }
 
 a {
@@ -32,32 +32,101 @@ form {
   width: 100%;
 }
 
+img{
+  border-radius: 10px;
+}
+
+nav > ul > li{
+  position: relative;
+  width: 60px;
+  text-align: center;
+}
+
+#loader_back{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+#loader_img{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  transition: opacity 1.2s ease-in-out;
+}
+.ready{
+  opacity: 0;
+}
+
+.user_name{
+  position: absolute;
+  width: max-content;
+  top: 100%;
+}
+
 .tweet{
   position: relative;
-  margin-bottom: 30px;
+  border-bottom: 1px solid rgb(239 239 239);
+  padding: 15px;
+}
+.tweet:first-of-type{
+  border-top: 1px solid rgb(239 239 239);
 }
 .tweet:last-of-type{margin-bottom: 50px;}
 
 .tweet-input::placeholder {
-  color: white;
+  color: #666;
   opacity: 0.9;
 }
+.tweet_top{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+.tweet_info{
+  width: calc(100% - 50px);
+  margin-left: 6px;
+}
+.tweet_author{
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.tweet_author > .name{
+  display: inline-block;
+  max-width: calc(100% - 110px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+  line-height: 16px;
+}
+.tweet_author > span{
+  font-size: 12px;
+  color: #666;
+}
+
+
 
 .container {
   width: 100%;
-  max-width: 320px;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
+}
+.container.profile{
+  padding: 0 15px;
 }
 
 .formInput {
   width: 100%;
   padding: 10px 20px;
   border-radius: 20px;
-  border: 1px solid black;
+  border: 1px solid #999;
   text-align: center;
-  background-color: white;
   color: black;
   margin-bottom: 5px;
 }
@@ -68,7 +137,7 @@ form {
 .formBtn {
   cursor: pointer;
   width: 100%;
-  padding: 7px 20px;
+  padding: 10px 20px;
   text-align: center;
   color: white;
   border-radius: 20px;
@@ -78,7 +147,7 @@ form {
 
 .cancelBtn {
   cursor: pointer;
-  background-color: tomato;
+  background-color: #999;
 }
 
 /* Profile Page */
@@ -103,19 +172,20 @@ form {
   align-items: center;
   width: 100%;
   margin-bottom: 20px;
+  padding: 0 15px;
 }
 
-.factoryInput__container {
+.factoryInput_container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   width: 100%;
 }
 
-.factoryInput__input {
+.factoryInput_input {
   flex-grow: 1;
   height: 40px;
   padding: 0px 20px;
@@ -126,8 +196,10 @@ form {
   font-size: 12px;
 }
 
-.factoryInput__arrow {
+.factoryInput_arrow {
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   right: 0;
   background-color: #04aaff;
   height: 34px;
@@ -138,41 +210,43 @@ form {
   cursor: pointer;
 }
 
-.factoryInput__label {
+.factoryInput_label {
   color: #04aaff;
   cursor: pointer;
 }
 
-.factoryInput__label span {
+.factoryInput_label span {
   margin-right: 10px;
   font-size: 13px;
 }
 
-.factoryForm__attachment {
+.factoryForm_attachment {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.factoryForm__attachment img {
+.factoryForm_attachment img {
   width: 100%;
   margin: 20px 0 10px;
 }
 
-.factoryForm__clear {
+.factoryForm_clear,
+.new_clear {
   color: #04aaff;
   cursor: pointer;
   text-align: center;
 }
 
-.factoryForm__clear span {
+.factoryForm_clear span,
+.new_clear span {
   margin-right: 10px;
   font-size: 12px;
 }
 
 .tweetInput{
   border: 1px solid #999;
-  padding: 3px 5px;
+  padding: 7px 10px;
   width: calc(100% - 50px);
 }
 /* Get */
@@ -181,6 +255,9 @@ form {
   margin-top: 15px;
   margin-bottom: 5px;
   border: none;
+}
+.tweetEdit > .tweetInput{
+  width: 100%;
 }
 
 .have {
@@ -199,7 +276,8 @@ form {
 .tweet h4.text {
   margin-bottom: 5px;
   font-size: 15px;
-  width: calc(100% - 44px);
+  word-break: break-word;
+  line-height: 18px;
 }
 .tweet h4.date{
   margin-bottom: 10px;
@@ -219,18 +297,22 @@ form {
   margin-top: 10px;
 }
 
-.tweet__actions {
+.tweet_actions {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 15px;
+  right: 15px;
 }
 
-.tweet__actions span {
+.tweet_actions span {
   cursor: pointer;
 }
 
-.tweet__actions span:first-child {
+.tweet_actions span:first-child {
   margin-right: 10px;
+}
+
+.tweet_actions svg{
+  color: #444;
 }
 
 /* Auth */
@@ -241,6 +323,7 @@ form {
   height: 100vh;
   justify-content: center;
   align-items: center;
+  padding: 0 15px;
 }
 
 .authBtns {
@@ -258,7 +341,7 @@ form {
   font-size: 12px;
   text-align: center;
   width: 150px;
-  background: white;
+  background: #999;
   cursor: pointer;
 }
 
@@ -267,13 +350,14 @@ form {
 .authInput {
   max-width: 320px;
   width: 100%;
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 30px;
   background-color: rgba(255, 255, 255, 1);
   margin-bottom: 10px;
-  font-size: 13px;
+  font-size: 14px;
   color: black;
   text-align: initial;
+  border: 1px solid #999;
 }
 
 .authSubmit {
@@ -281,7 +365,11 @@ form {
   background: #04aaff;
   color: white;
   margin-top: 10px;
+  padding: 13px;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
+  border: none;
 }
 
 .authError {
@@ -299,4 +387,67 @@ form {
   display: block;
   font-size: 13px;
   text-decoration: underline;
+}
+
+.img_wrap{
+  position: relative;
+}
+
+.img_delete{
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  z-index: 100;
+  right: 0;
+  /* color: black; */
+  cursor: pointer;
+  margin: 5px;
+}
+.img_delete > svg{
+  background: #FFF;
+  border-radius: 12px;
+}
+.new_attach{
+  text-align: center;
+}
+.photo_wrap{
+  text-align: center;
+  padding: 25px 0 15px;
+}
+.photo_big,
+.photo_small{
+  position: relative;
+  background-color: #04aaff;
+  border-radius: 50%;
+}
+.photo_big > .profile_photo,
+.photo_small > .profile_photo{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  right: 0;
+  color: #FFF;
+  text-align: center;
+}
+.photo_big{
+  width: 120px;
+  height: 120px;
+  margin: auto;
+}
+.photo_small{
+  width: 50px;
+  height: 50px;
+}
+.photo_big > .profile_photo{
+  font-size: 3em;
+  font-weight: 600;
+}
+.photo_small > .profile_photo{
+  font-size: 1em;
+  font-weight: 600;
+}
+.profile_photo > img{
+  width: 100%;
+  margin: auto;
 }
